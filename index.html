@@ -133,7 +133,7 @@
         const API_URL = isProduction
             ? 'https://super-todos.herokuapp.com/api'
             : 'http://localhost:3000/api';
-        const ROUTER_OPTIONS = isProduction ? {} : { hashbang: true }
+        const ROUTER_OPTIONS = { hashbang: true };
 
         window.module = {};
     </script>
