@@ -4,8 +4,13 @@
 
     const aboutView = {};
 
-    aboutView.init = () => {
+    function resetView() {
         $('.view').hide();
+        $('.nav-menu').slideUp(350);
+    }
+
+    aboutView.init = () => {
+        resetView();
         $('#about-view').show();
     };
 

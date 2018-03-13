@@ -2,19 +2,37 @@
     display: none;
 }
 
-header {
+.header-container {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: space-between;
 }
 
-header h1, header nav {
+.header-container h1 {
     display: inline-block;
 }
 
-nav > ul > li {
-    display: inline-block;
+nav {
+    display:none;
+    background: #555;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav li {
+    list-style: none;
+    padding: 10px 5px;
+    font-size: 18px;
 }
 
 form {

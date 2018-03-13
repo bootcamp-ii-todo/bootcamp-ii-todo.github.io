@@ -8,7 +8,7 @@
 
     function resetView() {
         $('.view').hide();
-        // $('.nav-menu').slideUp(350);
+        $('.nav-menu').slideUp(350);
     }
 
     const todoView = {};

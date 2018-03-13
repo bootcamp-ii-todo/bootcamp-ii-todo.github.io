@@ -5,6 +5,7 @@
 
     function resetView() {
         $('.view').hide();
+        $('.nav-menu').slideUp(350);
     }
 
     const template = Handlebars.compile($('#error-template').text());

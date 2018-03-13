@@ -2,9 +2,9 @@
 
 (function(module) {
 
-    // $('.icon-menu').on('click', () => {
-    // $('.nav-menu').slideToggle(350);
-    // });
+    $('.icon-menu').on('click', () => {
+        $('.nav-menu').slideToggle(350);
+    });
 
     const Todo = module.Todo;
     const aboutView = module.aboutView;
