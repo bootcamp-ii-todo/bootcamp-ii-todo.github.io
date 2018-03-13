@@ -17,6 +17,6 @@
     page('*', () => page.redirect('/home'));
 
 
-    page(ROUTER_OPTIONS);
+    page({ hashbang: true });
 
 })(window.module);
