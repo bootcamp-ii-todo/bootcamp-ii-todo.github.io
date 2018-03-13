@@ -4,35 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/icons.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./styles/modules/error.css">
+    <link rel="stylesheet" href="./styles/modules/header.css">
+    <link rel="stylesheet" href="./styles/modules/footer.css">
+    
     <title>Todo Demo</title>
 </head>
 <body>
-    <h1>Alchemy Bootcamp II Todos</h1>
-    <main>
-        <form id="add-todo">
-            <input id="todo-task" name="task">
-            <button>Add</button>
-        </form>
-        
-        <ul id="todos">
+    <header>
+        <div class="header-content">
+            <a href="/"><img src="acl.png" alt="logo"></a>
+            <h1>Bootcamp II Todos</h1>
+            <div class="icon-menu"></div>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/about">about</a></li>
+            <li><a href="/todos/new">add todo</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        </ul>
+    <main>
+        <!-- *** views *** -->
+
+        <section id="todo-view" class="view">
+            <h2 class="view-title">My Books</h2>
+            <ul id="todos"></ul>
+        </section>
+
+        <section id="todo-new-view" class="view">
+            <h2 class="view-title">Add A Todo</h2>
+            <form id="add-todo">
+                <div>
+                    <label>
+                        Task:
+                        <input id="todo-task" name="task">
+                    </label>
+                </div>
+
+                <div>
+                    <fieldset>
+                        <label>
+                            <input type="radio" name="priority" value="1"> 1
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="2"> 2
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="3" checked> 3
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="4"> 4
+                        </label>
+                        <label>
+                            <input type="radio" name="priority" value="5"> 5
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div>
+                    <label>
+                        Notes:
+                        <textarea id="todo-notes" name="notes"></textarea>
+                    </label>
+                </div>
+
+                <div>
+                    <button>Add</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="todo-detail-view" class="view"></section>
+
+        <section id="about-view" class="view">
+            <h2>About</h2>
+        </section>
+        
     </main>
 
-    <script id="todo-template" type="text/html">
-        <li>
-            <p>
-                <input type="checkbox" {{#if completed}}checked{{/if}}>
-                {{task}}
+
+    <!-- *** templates *** -->
+
+    <script id="todo-template" type="text/x-handlebars">
+        <li class="todo-items" data-id={{id}}>
+            <p class="{{#if completed}}completed{{/if}}">
+                {{#if completed}}☑{{else}}☐{{/if}}
+                <a href="/todos/{{id}}">
+                    {{task}}
+                </a>
             </p>
         </li>
     </script>
+
+    <script id="todo-detail-template" type="text/x-handlebars">
+        <div class="todo-container">
+            <h2>{{task}}</h2>
+            <div class="todo-details">
+                <p>{{#if completed}}Completed{{else}}Not Yet Completed{{/if}}</p>
+                <p>Priority: {{priority}}</p>
+                <p>Notes:</p>
+                <p>{{notes}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script id="error-template" type="text/x-handlebars-template">
+        <h3>Oops, something went wrong!</h3>
+        <p>{{status}}: {{statusText}}</p>
+    </script>
+
+    <!-- *** scripts *** -->
+
+    <!-- configuration script -->
+    <script>
+        const isProduction = window.location.protocol === 'https:';
+        const API_URL = isProduction
+        ? 'https://super-todos.herokuapp.com/api'
+        : 'http://localhost:3000/api';
+        const ROUTER_OPTIONS = isProduction ? {} : { hashbang: true }
+
+        window.module = {};
+    </script>
+    
+    <!-- vendor scripts: full url with https protocol -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.4/page.min.js"></script> -->
+    
+    <!-- app scripts: relative path url -->
     <script src="scripts/models/todo.js"></script>
-    <script src="scripts/views/todoView.js"></script>
-    <script>
-      app.Todo.fetchAll(app.todoView.initIndexPage);
-    </script>
+    <script src="scripts/views/todo-view.js"></script>
+    <script src="scripts/views/about-view.js"></script>
+    <script src="scripts/app.js"></script> 
+    <!-- app (controller) goes last because it is going to use models and views -->
 </body>
 </html>

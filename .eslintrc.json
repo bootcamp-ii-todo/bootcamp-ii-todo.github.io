@@ -1,10 +1,12 @@
 {
     "globals" : {
-      "Handlebars": true,
-      "page": true,
-      "$": true,
-      "marked": true,
-      "hljs": true
+      "API_URL": false,
+      "ROUTER_OPTIONS": false,
+      "Handlebars": false,
+      "page": false,
+      "$": false,
+      "marked": false,
+      "hljs": false
     },
     "extends": "eslint:recommended",
     "parserOptions": {

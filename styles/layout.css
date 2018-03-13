@@ -1,39 +1,27 @@
-.pull-left {
-  float: left;
+.view {
+  margin-top: 20px;
+  display: none;
 }
 
-.pull-right {
-  float: right;
+header img {
+  max-width: 10%;
+  display: inline-block;
+  padding-left: 5%;
 }
 
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+header h1 {
+  display: inline-block;
+  font-size: 5vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
 }
 
-.heading-group-h1 {
-  max-width: 80%;
-}
-
-#filters select {
-  width: 90%;
-  margin: .2em 5%;
-}
-
-@media only screen and (min-width: 640px) {
-  .heading-group-h1 {
-    padding: .1em .1em .1em 2em;
-    float: none;
-  }
-
-  #filters select {
-    width: 15em;
-    margin: .2em .2em;
-  }
-
-  #filters li {
-    width: 20em;
-    display: inline;
-  }
+main {
+  margin: 10px;
 }
