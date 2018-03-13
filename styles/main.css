@@ -1,0 +1,31 @@
+.view {
+    display: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+header h1, header nav {
+    display: inline-block;
+}
+
+nav > ul > li {
+    display: inline-block;
+}
+
+form {
+    max-width: 500px;
+    padding: 10px;
+}
+
+form > div {
+    margin: 10px;
+}
+
+form input:not([type=radio]), form textarea {
+    width: 100%;
+}

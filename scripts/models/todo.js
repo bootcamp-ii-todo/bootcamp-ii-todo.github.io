@@ -1,43 +1,48 @@
 'use strict';
 
-// const API_URL = 'http://localhost:3000/api';
-const API_URL = 'https://super-todos.herokuapp.com/api';
-
 (function (module) {
 
-    const template = Handlebars.compile($('#todo-template').html());
+    function errorCallback(err) {
+        console.log(err);
+        module.errorView.init(err);
+    }
     
     function Todo(data) {
         Object.keys(data).forEach(key => this[key] = data[key]);
+        this.reminder = this.completed ? 'Nice Job' : 'Hurry Up';
     }
-    
-    Todo.prototype.toHtml = function() {
-        return template(this);
-    };
 
-    // Define "instance" data methods
-    Todo.prototype.insert = function(callback) {
-        $.post(`${API_URL}/todos`, {
-            task: this.task
-        })
-            .then(data => {
-                Object.keys(data).forEach(key => this[key] = data[key]);
-                Todo.all.push(this);
-                if(callback) callback();
-            });
-    };
-    
     Todo.all = [];
     
-    Todo.fetchAll = function(callback) {
+    Todo.fetchAll = callback => {
         $.getJSON(`${API_URL}/todos`)
             .then(data => {
                 Todo.all = data.map(each => new Todo(each));
                 if(callback) callback();
             })
-            .catch(console.log);
+            .catch(errorCallback);
     };
+
+    Todo.detail = null;
+
+    Todo.fetchOne = (id, callback) => {
+        $.getJSON(`${API_URL}/todos/${id}`)
+            .then(data => {
+                Todo.detail = new Todo(data);
+                if(callback) callback();
+            })
+            .catch(errorCallback);
+    };
+
+    Todo.create = function(data, callback) {
+        $.post(`${API_URL}/todos`, data)
+            .then((data) => {
+                if(callback) callback(data);
+            })
+            .catch(errorCallback);
+    };
+    
 
     module.Todo = Todo;
 
-})(window.app || (window.app = {}));
+})(window.module);
