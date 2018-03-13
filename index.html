@@ -131,11 +131,11 @@
     
     <!-- configuration script -->
     <script>
-        const isProduction = window.location.protocol === 'https:';
-        const API_URL = isProduction
+        const isProd = window.location.protocol === 'https:';
+        const API_URL = isProd
             ? 'https://super-todos.herokuapp.com/api'
             : 'http://localhost:3000/api';
-        const ROUTER_OPTIONS = { hashbang: true };
+        const ROUTER_OPTIONS = isProd ? {} : { hashbang: true };
 
         window.module = {};
     </script>
