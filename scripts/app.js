@@ -21,6 +21,6 @@
     
     page('*', () => page.redirect('/'));
 
-    page({ hashbang: true });
+    page();
 
 })(window.module);
