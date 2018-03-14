@@ -6,6 +6,7 @@
 
     <base href="/">
 
+
     <!-- configuration script -->
     <script>
         const isProd = window.location.protocol === 'https:';
@@ -13,14 +14,12 @@
             ? 'https://super-todos.herokuapp.com/api'
             : 'http://localhost:3000/api';
         
-        const base = isProd ? '/todo-client' : '/';
+        const base = isProd ? '/todo-client/' : '/';
         const PAGE_BASE = isProd ? base : undefined;
-        
-        document.querySelector('base').setAttribute('href', base);
-        
+
+        document.querySelector('base').setAttribute('href', base);           
         window.module = {};
     </script>
-
 
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/layout.css">
@@ -157,6 +156,7 @@
 
     <!-- *** scripts *** --> 
 
+
     <!-- vendor scripts: full url with https protocol -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
@@ -164,13 +164,13 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.4/page.min.js"></script> -->
     
     <!-- app scripts: relative path url -->
-    <script src="scripts/models/todo.js"></script>
+    <script src="/scripts/models/todo.js"></script>
     <!-- <script src="scripts/models/admin.js"></script> -->
-    <script src="scripts/views/error-view.js"></script>
-    <script src="scripts/views/todo-view.js"></script>
-    <script src="scripts/views/about-view.js"></script>
+    <script src="/scripts/views/error-view.js"></script>
+    <script src="/scripts/views/todo-view.js"></script>
+    <script src="/scripts/views/about-view.js"></script>
     <!-- <script src="scripts/views/admin-view.js"></script> -->
-    <script src="scripts/app.js"></script> 
+    <script src="/scripts/app.js"></script> 
     <!-- app (controller) goes last because it is going to use models and views -->
 
 </body>
