@@ -2,6 +2,7 @@
     "globals" : {
       "API_URL": false,
       "ROUTER_OPTIONS": false,
+      "PAGE_BASE": true,
       "Handlebars": false,
       "page": false,
       "$": false,
