@@ -2,10 +2,7 @@
 
 (function (module) {
 
-    function errorCallback(err) {
-        console.log(err);
-        module.errorView.init(err);
-    }
+
     
     function Todo(data) {
         Object.keys(data).forEach(key => this[key] = data[key]);
@@ -18,8 +15,7 @@
         return $.getJSON(`${API_URL}/todos`)
             .then(data => {
                 Todo.all = data.map(each => new Todo(each));
-            })
-            .catch(errorCallback);
+            });
     };
 
     Todo.detail = null;
@@ -28,16 +24,26 @@
         return $.getJSON(`${API_URL}/todos/${id}`)
             .then(data => {
                 Todo.detail = new Todo(data);
-            })
-            .catch(errorCallback);
+            });
     };
 
-    Todo.create = function(data, callback) {
-        $.post(`${API_URL}/todos`, data)
-            .then((data) => {
-                if(callback) callback(data);
-            })
-            .catch(errorCallback);
+    Todo.create = data => {
+        return $.post(`${API_URL}/todos`, data);
+    };
+
+    Todo.update = data => {
+        return $.ajax({
+            url: `${API_URL}/todos/${data.id}`,
+            method: 'PUT',
+            data: data
+        });
+    };
+
+    Todo.delete = id => {
+        return $.ajax({
+            url: `${API_URL}/todos/${id}`,
+            method: 'DELETE'
+        });
     };
     
 

@@ -25,7 +25,7 @@
             <li><a href="/">home</a></li>
             <li><a href="/about">about</a></li>
             <li><a href="/todos/new">new todo</a></li>
-            <li><a href="/admin">admin login</a></li>
+            <li><a href="/login">login</a></li>
             </ul>
         </nav>
     </header>
@@ -47,6 +47,7 @@
         <section id="todo-new-view" class="view">
             <h2 class="view-title">Add A Todo</h2>
             <form id="add-todo">
+                <input type="hidden" name="id">
                 <div>
                     <label>
                         <div>Task:</div>
@@ -64,7 +65,7 @@
                             <input type="radio" name="priority" value="2"> 2
                         </label>
                         <label>
-                            <input type="radio" name="priority" value="3" checked> 3
+                            <input type="radio" name="priority" value="3"> 3
                         </label>
                         <label>
                             <input type="radio" name="priority" value="4"> 4
@@ -75,6 +76,13 @@
                     </fieldset>
                 </div>
 
+                <div id="todo-completed-container">
+                    <label>
+                        <div>Completed:</div>
+                        <input type="checkbox" name="completed">
+                    </label>
+                </div>
+
                 <div>
                     <label>
                         <div>Notes:</div>
@@ -83,7 +91,7 @@
                 </div>
 
                 <div>
-                    <button>Add</button>
+                    <button id="form-button">Add</button>
                 </div>
             </form>
         </section>
@@ -126,8 +134,9 @@
                 <p>Notes:</p>
                 <p>{{notes}}</p>
             </div>
-            <div>
+            <div id="todo-actions">
                 <button id="todo-delete">Delete</button>
+                <button id="todo-update">Update</button>
             </div>
         </div>
     </script>
@@ -162,11 +171,11 @@
     
     <!-- app scripts: relative path url -->
     <script src="/scripts/models/todo.js"></script>
-    <!-- <script src="scripts/models/admin.js"></script> -->
+    <script src="/scripts/models/user.js"></script>
     <script src="/scripts/views/error-view.js"></script>
     <script src="/scripts/views/todo-view.js"></script>
     <script src="/scripts/views/about-view.js"></script>
-    <!-- <script src="scripts/views/admin-view.js"></script> -->
+    <script src="/scripts/views/login-view.js"></script>
     <script src="/scripts/app.js"></script> 
     <!-- app (controller) goes last because it is going to use models and views -->
 
