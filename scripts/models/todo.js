@@ -14,22 +14,20 @@
 
     Todo.all = [];
     
-    Todo.fetchAll = callback => {
-        $.getJSON(`${API_URL}/todos`)
+    Todo.fetchAll = () => {
+        return $.getJSON(`${API_URL}/todos`)
             .then(data => {
                 Todo.all = data.map(each => new Todo(each));
-                if(callback) callback();
             })
             .catch(errorCallback);
     };
 
     Todo.detail = null;
 
-    Todo.fetchOne = (id, callback) => {
-        $.getJSON(`${API_URL}/todos/${id}`)
+    Todo.fetchOne = (id) => {
+        return $.getJSON(`${API_URL}/todos/${id}`)
             .then(data => {
                 Todo.detail = new Todo(data);
-                if(callback) callback();
             })
             .catch(errorCallback);
     };

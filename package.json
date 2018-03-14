@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server . --entry-file=index.html"
+    "start": "live-server . --entry-file=index.html --ignore .git"
   },
   "repository": {
     "type": "git",

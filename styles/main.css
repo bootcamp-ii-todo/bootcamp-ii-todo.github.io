@@ -68,7 +68,8 @@ form input:not([type=radio]), form textarea {
     cursor: pointer;
     color: #ff7445;
     font-size: 1.75em;
-    transition: transform 250ms ease-in-out,
+    transition: 
+        transform 250ms ease-in-out,
         color 250ms ease-in-out;
 }
 
