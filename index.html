@@ -4,6 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <base href="/">
+
+    <!-- configuration script -->
+    <script>
+        const isProd = window.location.protocol === 'https:';
+        const API_URL = isProd
+            ? 'https://super-todos.herokuapp.com/api'
+            : 'http://localhost:3000/api';
+        
+        const base = isProd ? '/todo-client' : '/';
+        document.querySelector('base').setAttribute('href', base);
+        
+        window.module = {};
+    </script>
+
+
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/main.css">
@@ -14,20 +30,24 @@
     
     <header>
         <div class="header-container">
-            <a href="/"><img src="acl.png" alt="logo"></a>
-            <h1>Bootcamp II Todos</h1>
+            <a href="/">
+                <img class="logo" src="/acl.png" alt="logo">
+            </a>
+            <h1>Bootcamp II Todo</h1>
             <div class="icon-menu"></div>
         </div>
         <nav class="nav-menu">
             <ul>
             <li><a href="/">home</a></li>
             <li><a href="/about">about</a></li>
-            <li><a href="/todos/new">add todo</a></li>
+            <li><a href="/todos/new">new todo</a></li>
+            <li><a href="/admin">admin login</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
         <!-- *** views *** -->
 
         <section id="about-view" class="view">
@@ -85,6 +105,15 @@
         </section>
 
         <section id="todo-detail-view" class="view"></section>
+
+        <section id="admin-view" class="view">
+            <h2 class="view-title">verify your passphrase</h2>
+            <form id="admin-form">
+                <input id="passphrase" name="passphrase" placeholder="passphrase">
+                <button type="submit">verify</button>
+            </form>
+            <p id="logged-in">you are logged in</p>
+        </section>
         
         <section id="error-view" class="view"></section>
         
@@ -113,6 +142,9 @@
                 <p>Notes:</p>
                 <p>{{notes}}</p>
             </div>
+            <div>
+                <button id="todo-delete">Delete</button>
+            </div>
         </div>
     </script>
 
@@ -129,20 +161,15 @@
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.4/page.min.js"></script> -->
     
-    <!-- configuration script -->
-    <script>
-        const API_URL = window.location.protocol === 'https:'
-            ? 'https://super-todos.herokuapp.com/api'
-            : 'http://localhost:3000/api';
-
-        window.module = {};
-    </script>
     <!-- app scripts: relative path url -->
     <script src="scripts/models/todo.js"></script>
+    <!-- <script src="scripts/models/admin.js"></script> -->
     <script src="scripts/views/error-view.js"></script>
     <script src="scripts/views/todo-view.js"></script>
     <script src="scripts/views/about-view.js"></script>
+    <!-- <script src="scripts/views/admin-view.js"></script> -->
     <script src="scripts/app.js"></script> 
     <!-- app (controller) goes last because it is going to use models and views -->
+
 </body>
 </html>

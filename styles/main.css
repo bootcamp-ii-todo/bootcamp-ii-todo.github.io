@@ -1,8 +1,15 @@
+body {
+    font-family: Roboto, sans-serif;
+}
+
 .view {
     display: none;
 }
 
 .header-container {
+    position: relative;
+    margin-bottom: 5px;
+    height: 50px;
     display: flex;
     align-items: center;
     align-content: center;
@@ -11,11 +18,16 @@
 
 .header-container h1 {
     display: inline-block;
+    font-size: 1.35em;
+}
+
+.header-container a, .header-container img {
+    height: 100%;
 }
 
 nav {
     display:none;
-    background: #555;
+    background: #00AA8F;
     color: white;
 }
 
@@ -27,11 +39,15 @@ nav a {
 
 nav ul {
     padding: 0;
+    margin: 0;
+    text-align: right;
 }
 
 nav li {
+    display: inline-block;
+    display: block;
     list-style: none;
-    padding: 10px 5px;
+    padding: 8px;
     font-size: 18px;
 }
 
@@ -46,4 +62,24 @@ form > div {
 
 form input:not([type=radio]), form textarea {
     width: 100%;
+}
+
+.icon-menu {
+    cursor: pointer;
+    color: #ff7445;
+    font-size: 1.75em;
+    transition: transform 250ms ease-in-out,
+        color 250ms ease-in-out;
+}
+
+.icon-menu.open {
+    color: #efeb3d;
+    transform: rotateZ(90deg);
+}
+#todos {
+    margin: 0;
+    padding: 0;
+}
+#todos > li {
+    list-style: none;
 }

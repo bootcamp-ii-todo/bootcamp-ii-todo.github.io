@@ -1,0 +1,24 @@
+{
+  "name": "todo-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server . --entry-file=index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootcamp-ii-todo/todo-client.git"
+  },
+  "author": "Marty Nelson <marty@martypdx.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bootcamp-ii-todo/todo-client/issues"
+  },
+  "homepage": "https://github.com/bootcamp-ii-todo/todo-client#readme",
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "live-server": "^1.2.0"
+  }
+}

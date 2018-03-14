@@ -10,13 +10,13 @@
     const aboutView = module.aboutView;
     const todoView = module.todoView;
 
-    page('/home', () => Todo.fetchAll(todoView.init));
+    page('/', () => Todo.fetchAll(todoView.init));
     page('/todos/new', () => todoView.initNew());
     page('/todos/:id', ctx => Todo.fetchOne(ctx.params.id, todoView.initDetail));
     page('/about', () => aboutView.init());
-    page('*', () => page.redirect('/home'));
+    page('*', () => page.redirect('/'));
 
 
-    page({ hashbang: true });
+    page();
 
 })(window.module);
