@@ -24,6 +24,7 @@
             <ul>
             <li><a href="/">home</a></li>
             <li><a href="/about">about</a></li>
+            <li><a href="/movies">movies</a></li>
             <li><a href="/todos/new">new todo</a></li>
             <li><a href="/login">login</a></li>
             </ul>
@@ -106,6 +107,17 @@
             </form>
             <p id="logged-in">you are logged in</p>
         </section>
+
+        <section id="movie-view" class="view">
+            <h2 class="view-title">Movies To Watch</h2>
+            <form id="movie-search">
+                <input required name="search">
+                <button>Search</button>
+            </form>
+
+            <ul id="movies"></ul>
+        </section>
+
         
         <section id="error-view" class="view"></section>
         
@@ -141,6 +153,13 @@
         </div>
     </script>
 
+    <script id="movie-template" type="text/x-handlebars">
+        <li class="movie-items" data-id={{id}}>
+            <p>{{Title}}</p>
+            <img src="http://img.omdbapi.com/?i={{imdbID}}&w=200&apikey=3db77742" alt="{{Title}}">
+        </li>
+    </script>
+
     <script id="error-template" type="text/x-handlebars-template">
         <h3>Oops, something went wrong!</h3>
         <p>{{status}}: {{statusText}}</p>
@@ -161,19 +180,22 @@
 
 
     <!-- vendor scripts: full url with https protocol -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.4/page.min.js"></script> -->
-    <script src="/scripts/vendor/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.8.4/page.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.5.1/qs.min.js"></script>
+    <!-- <script src="/scripts/vendor/jquery.min.js"></script>
     <script src="/scripts/vendor/handlebars.min.js"></script>
-    <script src="/scripts/vendor/page.min.js"></script>
+    <script src="/scripts/vendor/page.min.js"></script> -->
     
     <!-- app scripts: relative path url -->
     <script src="/scripts/models/todo.js"></script>
     <script src="/scripts/models/user.js"></script>
+    <script src="/scripts/models/movie.js"></script>
     <script src="/scripts/views/error-view.js"></script>
     <script src="/scripts/views/todo-view.js"></script>
+    <script src="/scripts/views/movie-view.js"></script>
     <script src="/scripts/views/about-view.js"></script>
     <script src="/scripts/views/login-view.js"></script>
     <script src="/scripts/app.js"></script> 

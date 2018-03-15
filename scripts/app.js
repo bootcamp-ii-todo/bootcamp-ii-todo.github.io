@@ -14,8 +14,10 @@
     };
     
     const Todo = module.Todo;
+    const Movie = module.Movie;
     const aboutView = module.aboutView;
     const todoView = module.todoView;
+    const movieView = module.movieView;
     const loginView = module.loginView;
 
     page('*', (ctx, next) => {
@@ -34,6 +36,11 @@
     page('/todos/:id', ctx => Todo.fetchOne(ctx.params.id).then(todoView.initDetail));
     
     page('/about', aboutView.init);
+
+    page('/movies', ctx => {
+        const search = Qs.parse(ctx.querystring).search;
+        Movie.find(search).then(movieView.init);
+    });
     
     page('*', () => page.redirect('/'));
 

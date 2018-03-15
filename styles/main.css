@@ -84,3 +84,32 @@ form input:not([type=radio]), form textarea {
 #todos > li {
     list-style: none;
 }
+
+#movies {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-items {
+    list-style: none;
+    height: 400px;
+    width: 200px;
+    overflow: hidden;
+    margin: 5px;
+    border: 1px solid #aaa;
+}
+
+.movie-items img {
+    width: 100%;
+}
+
+.movie-items p {
+    padding: 5px;
+    text-align: center;
+    font-weight: bolder;
+    height: 50px;
+    max-height: 50px;
+    color: #444;
+}
