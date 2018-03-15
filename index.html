@@ -26,7 +26,8 @@
             <li><a href="/about">about</a></li>
             <li><a href="/movies">movies</a></li>
             <li><a href="/todos/new">new todo</a></li>
-            <li><a href="/login">login</a></li>
+            <li><a href="/auth/signup">Sign Up</a></li>
+            <li><a href="/auth/signin">Sign In</a></li>
             </ul>
         </nav>
     </header>
@@ -100,11 +101,16 @@
         <section id="todo-detail-view" class="view"></section>
 
         <section id="admin-view" class="view">
-            <h2 class="view-title">verify your passphrase</h2>
+            <h2 class="view-title">Signup</h2>
+            <div>
+                <a id="auth-type" href="/auth/signin">Signin</a>
+            </div>
             <form id="admin-form">
-                <input id="passphrase" name="passphrase" placeholder="passphrase">
-                <button type="submit">verify</button>
+                <div>email: <input id="email" name="passphrase" placeholder="email"></div>
+                <div>password: <input id="password" name="passphrase" placeholder="password"></div>
+                <div><button type="submit">Do It!</button></div>
             </form>
+            <pre id="auth-error"></pre>
             <p id="logged-in">you are logged in</p>
         </section>
 
@@ -154,9 +160,13 @@
     </script>
 
     <script id="movie-template" type="text/x-handlebars">
-        <li class="movie-items" data-id={{id}}>
-            <p>{{Title}}</p>
-            <img src="http://img.omdbapi.com/?i={{imdbID}}&w=200&apikey=3db77742" alt="{{Title}}">
+        <li class="movie-items">
+            <p>
+                {{title}}
+                <button data-id="{{imdbId}}">Add to watch</button>
+            </p>
+            
+            <img src="{{poster}}" alt="{{title}}">
         </li>
     </script>
 

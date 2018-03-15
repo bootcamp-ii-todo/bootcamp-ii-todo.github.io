@@ -6,12 +6,30 @@
 
     const loginView = {};
 
-    loginView.init = () => {
-        if(User.isAdmin) {
+    let method = '';
+
+    loginView.initSignup = () => {
+        if(User.current) {
             $('#admin-form').hide();
             $('#logged-in').show();
         }
         else {
+            method = 'signup';
+            $('#auth-type').attr('href', '/auth/signin').text('Already have an account? Sign In');
+            $('#admin-form').off('submit').on('submit', handleSubmit);
+            $('#logged-in').hide();
+        }
+        $('#admin-view').show();
+    };
+
+    loginView.initSignin = () => {
+        if(User.current) {
+            $('#admin-form').hide();
+            $('#logged-in').show();
+        }
+        else {
+            method = 'signin';
+            $('#auth-type').attr('href', '/auth/signup').text('Need to create an account? Sign Up');
             $('#admin-form').off('submit').on('submit', handleSubmit);
             $('#logged-in').hide();
         }
@@ -20,14 +38,18 @@
 
     const handleSubmit = event => {
         event.preventDefault();
+        const credentials = {
+            email: $('#email').val(),
+            password: $('#password').val()
+        };
 
-        User.auth($('#passphrase').val())
-            .then(user => {
-                if(!user.isAdmin) alert('passphrase not correct');
-                else {
-                    $('#admin-form')[0].reset();
-                    page('/');
-                }
+        User[method](credentials)
+            .then(() => {
+                $('#admin-form')[0].reset();
+                page('/');
+            })
+            .catch(err => {
+                $('#auth-error').text(err.responseJSON.error);
             });
     };
 

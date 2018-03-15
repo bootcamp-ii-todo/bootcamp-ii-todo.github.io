@@ -15,6 +15,7 @@
     
     const Todo = module.Todo;
     const Movie = module.Movie;
+    const User = module.User;
     const aboutView = module.aboutView;
     const todoView = module.todoView;
     const movieView = module.movieView;
@@ -27,7 +28,9 @@
 
     page('/', () => Todo.fetchAll().then(todoView.init));
 
-    page('/login', loginView.init);
+    page('/auth/signup', loginView.initSignup);
+
+    page('/auth/signin', loginView.initSignin);
 
     page('/todos/new', todoView.initNew);
     
@@ -45,5 +48,7 @@
     page('*', () => page.redirect('/'));
 
     page();
+
+    User.tryToken();
 
 })(window.module);

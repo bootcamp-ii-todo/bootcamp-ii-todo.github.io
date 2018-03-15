@@ -45,6 +45,13 @@
             method: 'DELETE'
         });
     };
+
+    Todo.addMovie = id => {
+        return $.ajax({
+            url: `${API_URL}/todos/movies/${id}`,
+            method: 'PUT'
+        });
+    };
     
 
     module.Todo = Todo;

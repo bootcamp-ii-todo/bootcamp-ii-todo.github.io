@@ -2,6 +2,7 @@
 
 (function (module) {
     const Movie = module.Movie;
+    const Todo = module.Todo;
     const movieView = {};
 
     const template = Handlebars.compile($('#movie-template').text());
@@ -11,7 +12,9 @@
 
         $('#movies')
             .empty()
-            .append(Movie.found.map(template));
+            .off('click')
+            .append(Movie.found.map(template))
+            .on('click', 'button', handleAdd);
 
         $('#movie-search input[name=search]').val(Movie.search);
 
@@ -19,6 +22,12 @@
             .off('submit')
             .on('submit', handleSubmit);
 
+    };
+
+    const handleAdd = function() {
+        const id = $(this).data('id');
+        Todo.addMovie(id)
+            .then(todo => page(`/todos/${todo.id}`));
     };
 
     const handleSubmit = event => {

@@ -98,7 +98,7 @@
             .show();
 
         
-        if(User.current && User.current.isAdmin) {
+        if(User.current) {
             $('#todo-delete').on('click', () => {
                 Todo.delete(Todo.detail.id)
                     .then(() => {
